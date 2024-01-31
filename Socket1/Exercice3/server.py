@@ -13,9 +13,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                ['-','-','-'], 
                ['-','-','-']]
     
-    # numeroJoueurServ = random.randint(1, 2)
-    # numeroJoueurClient = 1 if numeroJoueurServ == 2 else 2
-    
     num = conn.recv(1024)
     num = int.from_bytes(num, byteorder='little')
     numAdv = 3-int(num)
