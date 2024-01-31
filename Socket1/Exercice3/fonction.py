@@ -25,6 +25,9 @@ def is_ended(mat, num):
         return True
     return False
 
+def is_full(mat, num):
+    return all('-' not in ligne for ligne in mat)
+
 def show_field(mat):
     for ligne in mat:
         print(' | '.join(ligne))
@@ -79,9 +82,18 @@ def lancer(num, numAdv, matrice, premierCommencer, conn_s):
             premierCommencer = True
             
             if is_ended(matrice, numAdv):
-                print("Vous avez perdu...")
+                if is_full(matrice, numAdv):
+                    print("Egalité !")
+                else:
+                    print("Vous avez perdu...")
         else:
             if is_ended(matrice, num):
-                print("Vous avez gagné !")
+                if is_full(matrice, numAdv):
+                    print("Egalité !")
+                else:
+                    print("Vous avez gagné !")
             else:
-                print("Vous avez perdu...")
+                if is_full(matrice, numAdv):
+                    print("Egalité !")
+                else:
+                    print("Vous avez perdu...")

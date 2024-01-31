@@ -14,7 +14,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                ['-','-','-']]
     
     num = conn.recv(1024)
-    num = int.from_bytes(num, byteorder='little')
+    # marche avec little aussi car qu'un seul octet n'est envoyé
+    num = int.from_bytes(num, byteorder='big')
     numAdv = 3-int(num)
     print("numéro", num)
     

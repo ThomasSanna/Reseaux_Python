@@ -15,7 +15,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     num = random.randint(1, 2)
     numAdv = 3-num
+    # effectuer la conversion en binaire du nombre et le transmet au serveur
     s.sendall(numAdv.to_bytes((numAdv.bit_length()+7)//8, 'big'))
+    # s.sendall()
     print("numéro", num)
     
     premierCommencer = False if num == 2 else True
