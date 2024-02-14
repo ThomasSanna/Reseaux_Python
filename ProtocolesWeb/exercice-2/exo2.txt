@@ -1,0 +1,26 @@
+1. Adresse IP du serveur de l'université : 193.48.28.18
+
+2. Il y a en tout 12 requêtes GET pour charger la page : 
+- 1 pour le fichier html
+- Il y a 6 fichiers css
+- Plusieurs fichiers js : 7 fichiers js
+- 2 fichiers images : ce sont deux mêmes fichiers mais un a un statut 301 et l'autre 200.
+- 1 requêtes vers un site externe : www.pagespeed-mod.com
+- favicon.ico (qui est un fichier image)
+
+3. Lorque l'on se connecte avec des identifiants, le serveur renvoie un statut 401 (Non autorisé).
+
+4. Non, les fichiers js et images sont mis en cache et ne sont pas re-téléchargés.
+
+5. Lorsqu'on se connecte puis on revient sur la page de connexion, on est toujours connecté (renvoie à la page d'accueil). 
+Cela signifie que le serveur a gardé en mémoire les identifiants de l'utilisateur dans une session.
+
+6. Lorsqu'on relance le navigateur, on est déconnecté. 
+Cela signifie que le serveur a gardé en mémoire les identifiants de l'utilisateur dans une session qui est détruite lorsque le navigateur est fermé.
+
+7. Lorqu'on se connecte sur un onglet, l'autre onglet est aussi connecté car les sessions sont partagées entre les onglets.
+
+8.
+
+9. auth.univ_corse.fr. studia.universita.corsica.
+
