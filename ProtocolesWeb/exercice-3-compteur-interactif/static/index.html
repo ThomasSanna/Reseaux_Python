@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Counter</title>
+</head>
+<body>
+    <h1>Counter: <span id="counter">0</span></h1>
+    <button id="increment">+</button>
+    <button id="decrement">-</button>
+
+    <script>
+        document.getElementById("increment").addEventListener("click", function() {
+            fetch("/increment")
+                .then(response => response.json())
+                .then(data => document.getElementById("counter").textContent = data.counter);
+        });
+
+        document.getElementById("decrement").addEventListener("click", function() {
+            fetch("/decrement")
+                .then(response => response.json())
+                .then(data => document.getElementById("counter").textContent = data.counter); // On peut remplacer textContent par innerHTML
+        });
+    </script>
+</body>
+</html>
