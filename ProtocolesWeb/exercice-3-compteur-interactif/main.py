@@ -38,13 +38,17 @@ async def websocket_endpoint(websocket: WebSocket):
     ws_connexion.append(websocket)
     global counter
     while True:
-        data = await websocket.receive_text()
-        if data == "increment":
-            counter += 1
-        elif data == "decrement":
-            counter -= 1
-        for conn in ws_connexion:
-            await conn.send_text(f"{counter}")
+        try:
+            data = await websocket.receive_text()
+            if data == "increment":
+                counter += 1
+            elif data == "decrement":
+                counter -= 1
+            for conn in ws_connexion:
+                await conn.send_text(f"{counter}")
+        except:
+            break
+    ws_connexion.remove(websocket)
     
 # uvicorn main:app --reload
 
