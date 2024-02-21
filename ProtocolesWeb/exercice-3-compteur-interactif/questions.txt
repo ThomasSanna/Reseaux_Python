@@ -1,0 +1,6 @@
+4. Question : Ouvrir deux navigateurs différents, et réaliser des requêtes sur l’un d’entre eux.
+Pourquoi l’autre navigateur ne voit pas l’actualisation du compteur ?
+
+- L'autre navigateur ne voit pas l'actualisation du compteur car il n'y a pas de requêtes faites par le client dans l'autre navigateur. Il garde bien en mémoire le compteur et s'affiche seulement lorsque l'on effectue une requête
+Si on utilise le polling, on effectue une requête automatique. périodiquement pour pouvoir actualiser le compteur s'il a changé
+

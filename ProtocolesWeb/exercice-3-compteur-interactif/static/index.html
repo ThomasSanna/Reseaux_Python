@@ -4,24 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Counter</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 0 16px;
+            margin: 0 0.5em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Counter: <span id="counter">0</span></h1>
-    <button id="increment">+</button>
-    <button id="decrement">-</button>
+    <button onclick="incrementer()">+</button>
+    <button onclick="decrementer()">-</button>
 
     <script>
-        document.getElementById("increment").addEventListener("click", function() {
+        function incrementer(){
             fetch("/increment")
                 .then(response => response.json())
-                .then(data => document.getElementById("counter").textContent = data.counter);
-        });
+                .then(data => document.getElementById("counter").textContent = data.counter)
+        }
 
-        document.getElementById("decrement").addEventListener("click", function() {
+        function decrementer(){
             fetch("/decrement")
                 .then(response => response.json())
-                .then(data => document.getElementById("counter").textContent = data.counter); // On peut remplacer textContent par innerHTML
-        });
+                .then(data => document.getElementById("counter").textContent = data.counter)
+        }
+
+        setInterval(actualiser(), 5000)
+
+        function actualiser(){
+            fetch("/actualisation")
+                .then(response => response.json())
+                .then(data => document.getElementById("counter").textContent = data.counter)
+        }
     </script>
 </body>
 </html>
