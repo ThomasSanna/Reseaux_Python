@@ -24,26 +24,8 @@
     <button onclick="incrementer()">+</button>
     <button onclick="decrementer()">-</button>
 
-    <script>
-        function incrementer(){
-            fetch("/increment")
-                .then(response => response.json())
-                .then(data => document.getElementById("counter").textContent = data.counter)
-        }
-
-        function decrementer(){
-            fetch("/decrement")
-                .then(response => response.json())
-                .then(data => document.getElementById("counter").textContent = data.counter)
-        }
-
-        setInterval(actualiser(), 5000)
-
-        function actualiser(){
-            fetch("/actualisation")
-                .then(response => response.json())
-                .then(data => document.getElementById("counter").textContent = data.counter)
-        }
-    </script>
+    <!-- <script src="./static/script.js"></script> -->
+    <!-- <script src="./static/polling.js"></script> -->
+    <script src="./static/websockets.js"></script>
 </body>
 </html>
