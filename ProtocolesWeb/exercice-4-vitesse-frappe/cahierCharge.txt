@@ -1,0 +1,6 @@
+Jeu : Ecrire le plus vite possible.
+
+Deux joueurs connectés simultanément via websocket..
+Une course sur une même phrase se lance, le joueur qui a écrit le plus vite cette phrase a gagné.
+
+Sur l'affichage, le joueur voit ce qu'il écrit, son score, et le score en temps réel de son adversaire.

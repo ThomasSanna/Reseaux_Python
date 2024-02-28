@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concours ^^</title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      height: 100vh;
+      padding: 20px;
+    }
+    .container{
+      display: flex;
+      justify-content: space-around;
+    }
+    .joueur{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .texte-cont{
+      margin: 20px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 90vw;
+    }
+    .texte-cont div{
+      border-radius: 10px;
+      font-size: 2rem;
+      border: 1px solid ;
+      padding: 10px;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      width: 90%;
+      margin-bottom: 20px;
+    }
+    .texte-cont input{
+      font-size: 1.8rem;
+      padding: 5px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="joueur">
+      <div>
+        Votre score : <span id="scoreJou">0</span>
+      </div>
+      <div class="adversaire">
+        Score de l'adversaire : 
+        <span id="scoreAdv">0</span>
+      </div>
+      <div class="texte-cont">
+        <div id="textePlacer">Le texte ici nan en vrai je sais pas j'invente tout</div>
+        <input onkeydown="taptap()" id="texteEntrer" type="text">
+      </div>
+    </div>
+
+  </div>
+</body>
+
+<script>
+  function resetInput(){
+    let inp = document.querySelector('#texteEntrer')
+    inp.value = 0
+  }
+  function taptap(e){
+    console.log(e)
+    let textePlacer = document.querySelector('#textePlacer').innerText
+    let texteEntrer = document.querySelector('#texteEntrer').value
+    e.addEventListener('keydown', function(elt){
+      if(elt.key == 'Space'){
+        console.log('space')
+        resetInput()
+      }
+    })
+  }
+  
+</script>
+
+</html>

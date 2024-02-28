@@ -10,7 +10,7 @@ counter = 0 # initialisation du compteur
 ws_connexion = []
 
 @app.get("/") # définition de la route
-def read_root(): # définition de la fonction associée à la route  
+def read_root(): # définition de la fonction associée à la route
     return FileResponse('static/index.html') # retourne le fichier index.html
 
 @app.get("/increment")
