@@ -1,0 +1,94 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  height: 100vh;
+  padding: 20px;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+.joueur{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.texte-cont{
+  margin: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+#textePlacer{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  max-height: 130px;
+  overflow: auto;
+  border-radius: 10px;
+  font-size: 2rem;
+  border: 1px solid ;
+  min-height: 100px;
+  padding: 20px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 900px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+#textePlacer span{
+  margin: 2px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 5px;
+}
+.texte-cont div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.texte-cont input{
+  font-size: 1.8rem;
+  padding: 5px;
+  width: 300px;
+  display: none;
+}
+.surligneVert{
+  background-color: rgb(124, 255, 124);
+}
+.surligneRouge{
+  background-color: rgb(255, 116, 116);
+}
+.enBorder{
+  border: 1px solid black;
+}
+.basPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.launchButton{
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 5px;
+  margin: 10px;
+}
+.chrono{
+  display: block;
+  font-size: 3rem;
+  margin: 10px;
+  height: 50px;
+}
+.btnRejouer{
+  display: none;
+  font-size: 1.8rem;
+  padding: 5px;
+}

@@ -1,0 +1,16 @@
+Jeu : Ecrire le plus vite possible.
+
+Deux joueurs connectés simultanément via websocket..
+Une course sur deux suites de noms communs aléatoires et différentes se lance, le joueur qui obtient le plus grand score (noms écrits correctement) gagne la partie.
+
+Lors du lancement de la partie, le premier joueur doit attendre le second joueur (message d'attente)
+
+Sur l'affichage, le joueur voit ce qu'il écrit, son score, et le score en temps réel de son adversaire.
+Le chrono est affiché en haut de l'écran, et est le même pour les deux joueurs (30 secondes par défaut).
+
+Lorsque le temps est écoulé, le joueur qui a le plus grand score gagne la partie.
+Un bouton "Rejouer" permet de relancer une partie à l'aide d'un rafrachissement de la page. Les deux joueurs commenceront en même temps.
+
+Sanna Thomas
+
+(J'essaierai de faire le même jeu où +2 joueurs peuvent rejoindre la partie en même temps)
