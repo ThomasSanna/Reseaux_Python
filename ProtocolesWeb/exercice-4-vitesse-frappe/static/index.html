@@ -24,8 +24,20 @@
           <h1 class="messageAttente">En attente d'un adversaire...</h1>
           <h1 class="startC"></h1>
           <input placeholder="..." onkeyup="taptap()" id="texteEntrer" type="text">
-          <button class="btnRejouer" onclick="rejouer()">Rejouer</button>
+          <button class="btnRejouer btnPage" onclick="rejouer()">Rejouer</button>
+
         </div>
+      </div>
+    </div>
+    <div class="finPartie">
+      <div class="finPartDedans">
+        <div class="fermerFenFin" onclick="closeFinPartie()">x</div>
+        <div class="classement">
+          <h1 class="messageFin"></h1>
+          <h2 class="score1Fin"></h2>
+          <h3 class="score2Fin"></h3>
+        </div>
+        <button class="btnRejouer" onclick="rejouer()">Rejouer</button>
       </div>
     </div>
   </div>

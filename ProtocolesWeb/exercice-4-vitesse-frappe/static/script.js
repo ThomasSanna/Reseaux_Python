@@ -46,15 +46,47 @@ function launchGame(){
         chrono--
         if(chrono < -1){
           clearInterval(chronoInterval)
-          document.querySelector('.chrono').innerHTML = ""
-          document.querySelector('#texteEntrer').style.display = 'none'
-          document.querySelector('#texteEntrer').value = ""
-          document.querySelector('.btnRejouer').style.display = 'block'
+          finPartie()
         }
       }, 1000);
     }
   }, 1000);
 }
+
+function finPartie(){
+  document.querySelector('.chrono').innerHTML = ""
+  document.querySelector('#texteEntrer').style.display = 'none'
+  document.querySelector('#texteEntrer').value = ""
+  document.querySelector('.finPartie').style.display = 'flex'
+  document.querySelector('.btnPage').style.display = 'flex'
+
+  let scoreAdv = parseInt(document.querySelector('#scoreAdv').innerHTML)
+  let scoreJoue = parseInt(document.querySelector('#scoreJou').innerHTML)
+  let message = ""
+  let score1 = ""
+  let score2 = ""
+
+  if(scoreJoue > scoreAdv){
+    message = "Vous avez gagné !"
+    score1 = "Votre score : " + scoreJoue
+    score2 = "Score adverse : " + scoreAdv
+  } else if(scoreJoue < scoreAdv){
+    message = "Vous avez perdu !"
+    score1 = "Score adverse : " + scoreAdv
+    score2 = "Votre score : " + scoreJoue
+  } else {
+    message = "Match nul !"
+    score1 = "Votre score : " + scoreJoue
+    score2 = "Score adverse : " + scoreAdv
+  }
+
+  document.querySelector('.messageFin').innerHTML = message
+  document.querySelector('.score1Fin').innerHTML = score1
+  document.querySelector('.score2Fin').innerHTML = score2
+
+  ws.send(JSON.stringify({type: "stop"}))
+}
+
 
 function arrToString(arr){
   return arr.join(' ')
@@ -113,3 +145,6 @@ function affichageTexte(){
   textePlacer.innerHTML = arrToString(textePlacerArr)
 }
 
+function closeFinPartie(){
+  document.querySelector('.finPartie').style.display = 'none'
+}
