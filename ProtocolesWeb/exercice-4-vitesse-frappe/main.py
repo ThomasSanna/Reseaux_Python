@@ -12,25 +12,23 @@ def read_root(): # définition de la fonction associée à la route
     return FileResponse('static/index.html') # retourne le fichier index.html
 
 
-counter1 = 0 # initialisation du compteur de score du joueur 1
-counter2 = 0
 ws_connexion = []
 isLaunched = False
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    global counter1, counter2, ws_connexion, isLaunched
+    global ws_connexion, isLaunched
     await websocket.accept()
     if websocket not in ws_connexion:
       ws_connexion.append(websocket)
     while len(ws_connexion) < 2:
       print("En attente de connexion")
       await asyncio.sleep(3) # attente de 3 secondes
-      # time.sleep(3) # (à ne pas faire sinon le serveur bloque olala)
+      # time.sleep(3) # (à ne pas faire sinon le serveur bloque)
     print("--- 2 joueurs sont connectés ! ---")
     player1 = ws_connexion[0]
     player2 = ws_connexion[1]
-    if not isLaunched: # évite de lancer plusieurs fois la partie en même temps, très énervant
+    if not isLaunched: # évite de lancer plusieurs fois la partie en même temps, pas cool
       await player1.send_text(json.dumps({"type" : "start"})) # on aurait pu faire "for conn in ws-co...."
       await player2.send_text(json.dumps({"type" : "start"}))
       isLaunched = True
