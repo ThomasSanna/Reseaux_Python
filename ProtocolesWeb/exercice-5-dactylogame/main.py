@@ -13,6 +13,7 @@ def read_root(): # définition de la fonction associée à la route
 
 counter = []
 ws_connexion = []
+ws_status = [] # True = connecté, False = déconnecté. Nous permet d'éviter les erreurs lors d'envoi de message à des clients déconnectés
 isLaunched = False
 
 async def lancerPartie(ws_connexion):
@@ -20,7 +21,8 @@ async def lancerPartie(ws_connexion):
   if not isLaunched:
     isLaunched = True
     for ws in ws_connexion:
-      await ws.send_text(json.dumps({"type" : "lancerPartie"}))
+      if ws_status[ws_connexion.index(ws)]:
+        await ws.send_text(json.dumps({"type" : "lancerPartie"}))
 
 def rejouer():
   global counter, isLaunched
@@ -34,9 +36,12 @@ async def websocket_endpoint(websocket: WebSocket):
     if websocket not in ws_connexion:
       counter.append(0)
       ws_connexion.append(websocket)
-      await websocket.send_text(json.dumps({"type" : "numToi", "numToi" : ws_connexion.index(websocket)+1}))
+      ws_status.append(True)
+      listDeco = [i+1 for i in range(len(ws_connexion)) if not ws_status[i]]
+      await websocket.send_text(json.dumps({"type" : "numToi", "numToi" : ws_connexion.index(websocket)+1, "listDeco" : listDeco}))
       for ws in ws_connexion[:-1]:
-        await ws.send_text(json.dumps({"type" : "nvJoueur", "nvJoueur" : len(ws_connexion)}))
+        if ws_status[ws_connexion.index(ws)]:
+          await ws.send_text(json.dumps({"type" : "nvJoueur", "nvJoueur" : len(ws_connexion)}))
         
     while True:
       try:
@@ -49,7 +54,8 @@ async def websocket_endpoint(websocket: WebSocket):
         elif (data["type"] == "rejouer"):
           rejouer()
           for ws in ws_connexion:
-            await ws.send_text(json.dumps({"type" : "rejouer"}))
+            if ws_status[ws_connexion.index(ws)]:
+              await ws.send_text(json.dumps({"type" : "rejouer"}))
           ws_connexion = []
           break
           
@@ -57,7 +63,8 @@ async def websocket_endpoint(websocket: WebSocket):
           indexJ = ws_connexion.index(websocket)
           counter[indexJ] += 1
           for ws in ws_connexion:
-            await ws.send_text(json.dumps({"type" : "addScore", "score" : counter[indexJ], 'id' : indexJ+1}))
+            if ws_status[ws_connexion.index(ws)]:
+              await ws.send_text(json.dumps({"type" : "addScore", "score" : counter[indexJ], 'id' : indexJ+1}))
         
         elif (data["type"] == "finPartie"):
           counterTrie = sorted(counter, reverse=True)
@@ -68,7 +75,12 @@ async def websocket_endpoint(websocket: WebSocket):
           break
       
     if websocket in ws_connexion:
-      ws_connexion.remove(websocket)
+      ws_status[ws_connexion.index(websocket)] = False
+      counter[ws_connexion.index(websocket)] = -1
+      for ws in ws_connexion:
+        if ws_status[ws_connexion.index(ws)]:
+          await ws.send_text(json.dumps({"type" : "supprJoueur", "supprJoueur" : ws_connexion.index(websocket)+1}))
+      
     
 app.mount("/static", StaticFiles(directory="static"), name="static")
     

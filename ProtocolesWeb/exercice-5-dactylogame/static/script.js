@@ -1,10 +1,18 @@
 const ws = new WebSocket("ws://localhost:8000/ws");
 
+let indexTexte = 0
+let motWin = []
+let motLost = []
+let texteArr = []
+let texte = ""
+
+let numJouConn = []
+
 ws.onmessage = function (event) {
   let json = JSON.parse(event.data)
 
   if(json.type == "numToi"){
-    autreJoueurAvant(json.numToi)
+    autreJoueurAvant(json.numToi, json.listDeco)
   } 
   else if(json.type == "nvJoueur"){
     nouveauJoueur(json.nvJoueur)
@@ -21,18 +29,24 @@ ws.onmessage = function (event) {
   else if (json.type == "envoieCounterFinal"){
     finPartie(json.counterTrie, json.ind)
   }
+  else if (json.type == 'supprJoueur'){
+    supprimerDivJou(json.supprJoueur)
+  }
 };
 
-let numJouConn = []
+function supprimerDivJou(id){
+  document.querySelector('.divJou'+id).remove()
+}  
 
-function autreJoueurAvant(numToi){
+
+function autreJoueurAvant(numToi, listDeco){
   for (let i = 1; i <= numToi; i++){
     numJouConn.push(i)
   }
   divAdv = document.querySelector('.adversaire')
   divAdv.innerHTML = ""
   for(let i = 1; i < numToi; i++){
-    if(i != numToi){
+    if(i != numToi && !(listDeco.includes(i))){
       divAdv.innerHTML += `<div class="divJou${i}">
                              <span id="jou${i}">Joueur ${i} : </span><span class='scoreJou' id="scoreJou${i}">0</span>
                            </div>`
@@ -63,11 +77,7 @@ function rejouer(){
   ws.send(JSON.stringify({type: "rejouer"}))
 }
 
-let indexTexte = 0
-let motWin = []
-let motLost = []
-let texteArr = []
-let texte = ""
+
 
 function launchGame(){
   document.querySelector('.btnCommencer').style.display = 'none'
@@ -118,7 +128,9 @@ function finPartie(listeTrie, ind){
 
   for (let cle in listeTrie){
     let score = listeTrie[cle]
-    divScoresFin.innerHTML += `<div class="scoreFin${parseInt(cle)+1}"> Joueur ${parseInt(cle)+1} : ${score} point(s) </div>`
+    if (score >= 0){ // Les joueurs déconnectés ont un score de -1
+      divScoresFin.innerHTML += `<div class="scoreFin${parseInt(cle)+1}"> Joueur ${parseInt(cle)+1} : ${score} point(s) </div>`
+    }
   }
 }
 
