@@ -77,8 +77,6 @@ function rejouer(){
   ws.send(JSON.stringify({type: "rejouer"}))
 }
 
-
-
 function launchGame(){
   document.querySelector('.btnCommencer').style.display = 'none'
 
@@ -93,7 +91,7 @@ function launchGame(){
       document.querySelector('#texteEntrer').style.display = 'block'
       document.querySelector('#texteEntrer').focus()
 
-      let chrono = 5
+      let chrono = 29
       document.querySelector('.chrono').innerHTML = 30
       let chronoInterval = setInterval(() => {
         document.querySelector('.chrono').innerHTML = chrono<-1 ? 0 : chrono
@@ -133,7 +131,6 @@ function finPartie(listeTrie, ind){
     }
   }
 }
-
 
 function arrToString(arr){
   return arr.join(' ')
