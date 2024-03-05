@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concours ^^</title>
+  <link rel="stylesheet" href="./static/style.css">
+</head>
+<body onload="randomText()">
+  <h1 class="titre">Dactylogame - Ranked</h1>
+  <div class="container">
+    <div class="joueur">
+      <h1 class="toi">
+      </h1>
+      <h4 class="adversaire">
+      </h4>
+      <div class="chrono"></div>
+      <div class="texte-cont">
+        <div id="textePlacer"></div>
+        <div class="basPage">
+          <button onclick="lancerPartie()" class="btnCommencer">Commencer</button>
+          <h1 class="startC"></h1>
+          <input placeholder="..." onkeyup="taptap()" id="texteEntrer" type="text">
+          <button class="btnRejouer btnPage" onclick="rejouer()">Rejouer</button>
+
+        </div> 
+      </div>
+    </div>
+    <div class="finPartie">
+      <div class="finPartDedans">
+        <div class="fermerFenFin" onclick="closeFinPartie()">x</div>
+        <div class="classement">
+          <h1 class="messageFin"></h1>
+          <h3 class="scoresFin"></h3>
+        </div>
+        <button class="btnRejouer" onclick="rejouer()">Rejouer</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="static/script.js"></script>
+<!-- mettre seulement "./script.js" indique une erreur sur le fait que le serveur ne le trouve pas  -->
+</html>
