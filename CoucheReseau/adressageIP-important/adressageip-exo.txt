@@ -1,0 +1,43 @@
+EXERCICE 4 :
+
+145.245.45.225
+
+Masque : 255.255.0.0 (/16) CLASSE B
+L'adresse réseau de la machine : 145.245.0.0
+Masque augmenté : 
+  Pour 15 SR : 255.255.1111000.00000000 (/20) (4 bits de sous réseau car 2^4 = 16<15)
+  Pour 60 SR : /22 (6 bits de sous réseau car 2^6 = 64>60)
+  Pour 200 SR : /24 (8 bits de sous réseau car 2^8 = 256>200)
+
+Adresse du SR de cette machine :
+  Pour 15 SR : 145.245.45.225 ET LOGIQUE Masque augmenté /20 : 
+    145.245.00101101.11100001
+ ET 255.255.11110000.00000000
+
+  = 145.245.00100000.00000000 = 145.245.32.0
+
+  Pour 60 SR :
+    145.245.00101101.11100001
+ ET 255.255.11111100.00000000
+  
+ = 145.245.00101100.00000000 = 145.245.44.0
+
+  Pour 200 SR :
+    145.245.00101101.11100001
+ ET 255.255.11111111.00000000
+
+  = 145.245.00101101.00000000 = 145.245.45.0
+
+EXERCICE 5 :
+
+On dispose d’un sous-réseau 192.162.136.0/24. 
+On a pour mission de segmenter ce sous-réseau en plusieurs sous-réseaux, avec les spécifications suivantes :
+  1. un sous-réseau de 34 hôtes, uniquement pour la direction de l’entreprise ;
+  2. un sous-réseau de 67 hôtes pour les programmeurs d’applications ;
+  3. un sous-réseau de 13 hôtes pour les secrétaires ;
+  4. deux sous-réseaux de 5 hôtes chacun, pour les chargés de communication et les
+  comptables.
+Proposer une telle segmentation de ce sous-réseaux, en donnant les adresses des sous-
+réseaux, leurs masques, et les plages d’adresses.
+
+Faire du plus grand au plus petit 
