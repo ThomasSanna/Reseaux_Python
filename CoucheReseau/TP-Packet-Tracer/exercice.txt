@@ -1,0 +1,10 @@
+Commandes Utiles : 
+
+- ipconfig : affiche la configuration IP
+- ipconfig /all : affiche la configuration IP complète
+- ping : permet de tester la connexion réseau
+- netstat -r : affiche la table de routage
+- netstat -i : affiche les interfaces réseau
+- netstat -a : affiche toutes les connexions et les ports ouverts
+- netstat -t : affiche les connexions TCP
+- show ip route : affiche la table de routage
