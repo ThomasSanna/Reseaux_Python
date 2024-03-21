@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://localhost:8000/ws");
+const ws = new WebSocket("ws://172.21.3.161:8000/ws");
 
 let indexTexte = 0
 let motWin = []

@@ -84,8 +84,9 @@ async def websocket_endpoint(websocket: WebSocket):
     
 app.mount("/static", StaticFiles(directory="static"), name="static")
     
-if __name__ == "__main__":
-    uvicorn.run('main:app') # Lancement de l'application avec uvicorn
+if __name__ == '__main__':
+    uvicorn.run('main:app', host='172.21.3.161', port=8000)
+
     
 # cd exercice-5-dactylogame
 # uvicorn main:app --reload
